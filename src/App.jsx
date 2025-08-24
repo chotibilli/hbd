@@ -17,7 +17,7 @@ const BirthdayWishPage = () => {
   const [sparkles, setSparkles] = useState([]);
   const [rotation, setRotation] = useState(0);
 
-  // Your imported photos array
+  // Imported photos array
   const photos = [
     photo1,
     photo2,
@@ -29,33 +29,33 @@ const BirthdayWishPage = () => {
     photo8,
   ];
 
-  // Continuous rotation animation - slower speed
+  // Continuous rotation animation
   useEffect(() => {
     if (currentPage === 1) {
       const interval = setInterval(() => {
-        setRotation((prev) => prev + 0.3); // Decreased from 1.5 to 0.3 for slower rotation
-      }, 60); // Increased from 30ms to 60ms for slower, smoother animation
+        setRotation((prev) => prev + 0.3);
+      }, 60);
       return () => clearInterval(interval);
     }
   }, [currentPage]);
 
-  // Generate falling hearts animation
+  // Fluttering balloons animation
   useEffect(() => {
     if (currentPage === 2) {
       const interval = setInterval(() => {
         const newHeart = {
           id: Math.random(),
           left: Math.random() * 100,
-          animationDuration: Math.random() * 3 + 2,
-          size: Math.random() * 20 + 15,
+          animationDuration: Math.random() * 5 + 4,
+          size: Math.random() * 25 + 25,
         };
         setHearts((prev) => [...prev.slice(-20), newHeart]);
-      }, 300);
+      }, 400);
       return () => clearInterval(interval);
     }
   }, [currentPage]);
 
-  // Generate sparkles animation
+  // Sparkles animation
   useEffect(() => {
     const interval = setInterval(() => {
       const newSparkle = {
@@ -71,9 +71,9 @@ const BirthdayWishPage = () => {
 
   const loveParagraph = `You are truly everything to me. No matter what life throws my way—whether it's the highs that make me smile or the lows that test me—you've always been my one constant. You give me a sense of stability and peace that I've never known before, and I can't imagine my life without you in it. The strength I carry through every challenge comes from you, from the way you stand by me, and from the love you so effortlessly give. What keeps me moving forward, even on the hardest days, is your smile. It's the light I look for, the comfort I hold onto, and the reminder that no matter what, everything will be okay. You're the cutest, most beautiful girl in the world, but even more than that, you're my safe place, my happiness, and my forever. I don't just want this love for now—I want it for always, for forever, for a lifetime with you. Happy Birthday to the most amazing person I know. I love you more than words can express! ❤️`;
 
+  // --- PAGES ---
   const StartPage = () => (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-pink-400 via-purple-400 to-pink-600 relative overflow-hidden">
-      {/* Background sparkles */}
       {sparkles.map((sparkle) => (
         <div
           key={sparkle.id}
@@ -119,7 +119,6 @@ const BirthdayWishPage = () => {
 
   const CarouselPage = () => (
     <div className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-br from-purple-500 via-pink-500 to-red-400 relative overflow-hidden p-4">
-      {/* Background sparkles */}
       {sparkles.map((sparkle) => (
         <div
           key={sparkle.id}
@@ -143,7 +142,6 @@ const BirthdayWishPage = () => {
         </p>
       </div>
 
-      {/* 3D Circular Carousel */}
       <div
         className="relative w-96 h-96 md:w-[600px] md:h-[600px] mb-12"
         style={{ perspective: "1200px" }}
@@ -157,8 +155,7 @@ const BirthdayWishPage = () => {
         >
           {photos.map((photo, index) => {
             const angle = (index * 360) / photos.length;
-            const radius = 220; // Increased distance from center
-
+            const radius = 220;
             return (
               <div
                 key={index}
@@ -171,8 +168,8 @@ const BirthdayWishPage = () => {
                   `,
                   left: "50%",
                   top: "50%",
-                  marginLeft: "-80px", // Adjusted for larger size
-                  marginTop: "-80px", // Adjusted for larger size
+                  marginLeft: "-80px",
+                  marginTop: "-80px",
                   backfaceVisibility: "hidden",
                 }}
               >
@@ -189,10 +186,7 @@ const BirthdayWishPage = () => {
       </div>
 
       <button
-        onClick={() => {
-          console.log("Button clicked, current page:", currentPage);
-          setCurrentPage(2);
-        }}
+        onClick={() => setCurrentPage(2)}
         className="bg-gradient-to-r from-yellow-400 to-pink-500 text-white px-10 py-3 rounded-full text-lg font-bold shadow-2xl transform transition-all duration-300 hover:scale-105 hover:shadow-yellow-400/50"
       >
         Continue the Love Story →
@@ -202,23 +196,21 @@ const BirthdayWishPage = () => {
 
   const FinalPage = () => (
     <div className="min-h-screen bg-gradient-to-br from-pink-300 via-purple-400 to-pink-500 relative overflow-hidden">
-      {/* Falling hearts */}
       {hearts.map((heart) => (
         <div
           key={heart.id}
-          className="absolute text-red-400 pointer-events-none z-20"
+          className="absolute pointer-events-none z-20"
           style={{
             left: `${heart.left}%`,
-            top: "-50px",
+            top: "-60px",
             fontSize: `${heart.size}px`,
-            animation: `fall ${heart.animationDuration}s linear infinite`,
+            animation: `flutter ${heart.animationDuration}s ease-in infinite`,
           }}
         >
-          ❤️
+          🎈❤️
         </div>
       ))}
 
-      {/* Floating sparkles */}
       {sparkles.map((sparkle) => (
         <div
           key={sparkle.id}
@@ -234,7 +226,6 @@ const BirthdayWishPage = () => {
       ))}
 
       <div className="container mx-auto px-4 py-8 flex flex-col items-center relative z-10">
-        {/* Love message */}
         <div className="max-w-4xl mx-auto text-center mb-12 bg-white/20 backdrop-blur-sm rounded-3xl p-8 shadow-2xl border border-white/30">
           <h2 className="text-4xl md:text-5xl font-bold text-white mb-8 animate-pulse">
             A Message From My Heart 💕
@@ -244,7 +235,6 @@ const BirthdayWishPage = () => {
           </p>
         </div>
 
-        {/* Birthday cake */}
         <div className="text-center">
           <div className="relative inline-block mb-8">
             <div className="text-8xl md:text-9xl animate-bounce">🎂</div>
@@ -272,16 +262,28 @@ const BirthdayWishPage = () => {
             My Loveee! 💖✨
           </h2>
         </div>
+
+        {/* Back Button */}
+        <button
+          onClick={() => setCurrentPage(1)}
+          className="mt-10 bg-gradient-to-r from-purple-500 to-pink-600 text-white px-8 py-3 rounded-full text-lg font-bold shadow-xl transform transition-all duration-300 hover:scale-105 hover:shadow-purple-500/50"
+        >
+          ← Back to Memories
+        </button>
       </div>
 
       <style>{`
-        @keyframes fall {
-          from {
-            transform: translateY(-50px) rotate(0deg);
+        @keyframes flutter {
+          0% {
+            transform: translateY(-60px) translateX(0px) rotate(0deg);
             opacity: 1;
           }
-          to {
-            transform: translateY(100vh) rotate(360deg);
+          50% {
+            transform: translateY(50vh) translateX(30px) rotate(10deg);
+            opacity: 0.9;
+          }
+          100% {
+            transform: translateY(100vh) translateX(-30px) rotate(-10deg);
             opacity: 0;
           }
         }
@@ -289,9 +291,15 @@ const BirthdayWishPage = () => {
     </div>
   );
 
-  const pages = [<StartPage />, <CarouselPage />, <FinalPage />];
+  // ✅ Pages as functions
+  const pages = [StartPage, CarouselPage, FinalPage];
+  const CurrentPage = pages[currentPage];
 
-  return <div className="w-full">{pages[currentPage]}</div>;
+  return (
+    <div className="w-full">
+      <CurrentPage />
+    </div>
+  );
 };
 
 export default BirthdayWishPage;
