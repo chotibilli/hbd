@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Heart, Sparkles, Gift } from "lucide-react";
 
 // Import your photos from assets folder
-import photo1 from "./assets/images/photo1.jpg";
+import photo1 from "./assets/images/photo1.JPG";
 import photo2 from "./assets/images/photo2.jpg";
 import photo3 from "./assets/images/photo3.jpg";
 import photo4 from "./assets/images/photo4.jpg";
